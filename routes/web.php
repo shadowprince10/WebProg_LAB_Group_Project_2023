@@ -52,16 +52,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
 Route::middleware(['auth', 'customer'])->group(function () {
     Route::get('/homepage', [HomeController::class, 'homepage'])->name('homepage');
     Route::get('/products', [AllController::class, 'viewProduct'])->name('products');
-    Route::get('/cart', [AllController::class, 'viewCart'])->name('cart');
-    Route::post('/cart/add/{id}', [AllController::class, 'addToCart'])->name('cart.add');
-    Route::delete('/cart/{id}', [AllController::class, 'removeFromCart'])->name('cart.remove');
-    Route::put('/cart/{id}', [AllController::class, 'updateCart'])->name('cart.update');
 
     Route::prefix('/cart') -> group (function ($accID) {
         Route::get('/', [CartController::class, 'viewCart'])->name('cart.view');
         Route::post('/{cartID}/add', [CartController::class, 'addToCart'])->name('cart.add');
         Route::delete('/{cartID}', [CartController::class, 'removeFromCart'])->name('cart.delete');
-        Route::put('/{cartID}', [CartController::class, 'removeFromCart'])->name('cart.update');
+        Route::patch('/{cartID}/update', [CartController::class, 'updateCart'])->name('cart.update');
         Route::get('/{cartID}/checkout', [CartController::class, 'checkoutCart'])->name('cart.checkout');
     });
 });

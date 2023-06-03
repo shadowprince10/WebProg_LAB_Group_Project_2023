@@ -19,6 +19,28 @@
             <div class="add-to-cart-button">
                 <a href="{{ route('add-to-cart') }}" class = "btn-aqua">Add to Cart</a>
             </div>
+            <script src = "https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    $('.add-to-cart-button').click(function (event) {
+                        event.preventDefault();
+                        var productID = $(this).data('productID');
+                        var quantity = 1;
+
+                        $.ajax({
+                            url: '/cart/{cartID}/add',
+                            method: 'POST',
+                            data: {
+                                productID: productID,
+                                quantity: quantity
+                            }
+                            error: function(xhr, status, error) {
+                                console.error(xhr.responseText)
+                            }
+                        })
+                    })
+                })
+            </script>
         @endforeach
     </section>
 </body>
