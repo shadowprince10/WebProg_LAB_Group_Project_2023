@@ -25,13 +25,13 @@
                     <tbody>
                         @foreach($transactions as $transaction)
                             <tr>
-                                <td>{{ $transaction->id }}</td>
-                                <td>{{ $transaction->created_at }}</td>
-                                <td>{{ $transaction->user->username }}</td>
-                                <td>{{ $transaction->product->name }}</td>
-                                <td>{{ $transaction->product->price }}</td>
-                                <td>{{ $transaction->quantity }}</td>
-                                <td>{{ $transaction->total }}</td>
+                                <td>{{ $transaction -> id }}</td>
+                                <td>{{ $transaction -> created_at }}</td>
+                                <td>{{ $transaction -> user -> username }}</td>
+                                <td>{{ $transaction -> product -> name }}</td>
+                                <td>{{ $transaction -> product -> price }}</td>
+                                <td>{{ $transaction -> quantity }}</td>
+                                <td>{{ $transaction -> total }}</td>
                             </tr>
                         @endforeach
                     </tbody>

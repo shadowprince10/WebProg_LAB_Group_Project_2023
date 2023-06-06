@@ -1,3 +1,5 @@
+{{-- khusus admin --}}
+
 @extends('layouts.mainuser')
 
 @section('container')
@@ -9,7 +11,7 @@
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Product Name</label>
-                <input type="text" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" required>
+                <input type="text" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" required autofocus>
                 @if ($errors->has('name'))
                     <div class="invalid-feedback">
                         {{ $errors->first('name') }}

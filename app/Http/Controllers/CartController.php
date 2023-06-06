@@ -11,7 +11,7 @@ class CartController extends Controller
 
         $cartProducts = session('cart', []);
 
-        return view('customer.cart.view-cart', compact('cartProducts'));
+        return view('view-cart', compact('cartProducts'));
     }
 
     public function addToCart(Request $request, $productID) {
@@ -28,18 +28,14 @@ class CartController extends Controller
         return redirect() -> route('cart.view');
     }
 
-    public function removeFromCart() {
-
-    }
-
     public function updateCart(Request $request, Cart $cartProduct) {
         $cartQty = $request -> input('quantity');
 
-        if ($quantity <= 0) {
+        if ($cartQty <= 0) {
             return response() -> json(['error' => 'Quantity must be greater than zero.'], 400);
         }
 
-        $cartProduct -> quantity = $quantity;
+        $cartProduct -> quantity = $cartQty;
         $cartProduct -> save();
 
         return redirect() -> route('cart.view');
@@ -60,6 +56,6 @@ class CartController extends Controller
         // clear user's cart
         $user -> cart() -> detach();
 
-        return redirect() -> back();
+        return view('checkout-cart');
     }
 }

@@ -8,7 +8,7 @@ use app\Http\Models\User;
 class UserController extends Controller
 {
     public function register(Request $request) {
-        $user = new User(['username' => $request -> username, 'email' => $request -> email, 'password' => $request -> password, 'role' => $request -> role]);
+        $user = new User(['username' => $request -> name, 'email' => $request -> email, 'password' => $request -> password, 'role' => $request -> role]);
         $user -> save();
         return redirect('/');
     }
@@ -39,7 +39,7 @@ class UserController extends Controller
         $user -> role = $validatedInput['role'];
         $user -> save();
 
-        return redirect('/login')->with('success', 'Congratulations, your account has been succesfully registered. You can now login.');
+        return redirect('/login') -> with('success', 'Congratulations, your account has been succesfully registered. You can now login.');
     }
 
     public function login (Request $request) {

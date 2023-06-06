@@ -8,7 +8,7 @@ class ProductController extends Controller
 {
     public function viewProduct() {
         $products = Product::paginate(3);
-        return view('admin.todos.product.view-product-admin', compact('products'));
+        return view('view-product', compact('products'));
     }
 
 
